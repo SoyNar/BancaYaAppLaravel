@@ -67,4 +67,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+/**
+ * relation between turns and users
+*/
+    public function turnsClient()
+    {
+        return $this->hasMany(Turn::class, 'client_id');
+    }
+
+    public function turnsAdvisor()
+    {
+        return $this->hasMany(Turn::class, 'advisor_id');
+    }
 }
