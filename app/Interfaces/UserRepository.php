@@ -2,6 +2,7 @@
 
 namespace App\Interfaces;
 
+use App\Models\Turn;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Turn;
 use App\Models\User;
 use App\Interfaces\UserRepository;
 use Illuminate\Database\Eloquent\Collection;
@@ -70,4 +71,13 @@ class UserRepositoryImpl implements UserRepository
         }
         return $model->delete();
     }
+
+    public function createTurn(string $document): Turn
+    {
+        // TODO: Implement createTurn() method.
+        $turn =  Turn::all();
+        return $turn;
+    }
+
+
 }
