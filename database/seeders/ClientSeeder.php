@@ -15,7 +15,7 @@ class ClientSeeder extends Seeder
      */
     public function run(): void
     {  $client = User::firstOrCreate(
-        ['email' => 'marina@example.com'],
+        ['email' => 'Omara@example.com'],
         [
             'name' => 'client',
             'password' => Hash::make('123456789'),
