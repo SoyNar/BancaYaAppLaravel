@@ -1,10 +1,18 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+//user routes
+
+Route::get('/screen', [UserController::class, 'index']);
+
 
 Route::middleware([
     'auth:sanctum',
