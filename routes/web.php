@@ -15,7 +15,7 @@ Route::get('/', function () {
 Route::get('/screen', [UserController::class, 'index']);
 Route::post('/create-turn', [UserController::class, 'createTurn'])->name('createTurn')->middleware(CheckCategoryPermission::class);
 Route::get('/show-turn', [UserController::class, 'showTurn'])->name('showTurn');
-
+Route::get('/seetickets', [UserController::class, 'seetickets'])->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',

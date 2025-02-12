@@ -23,6 +23,10 @@ class UserController extends Controller
         return view('screens.user-screen');
     }
 
+    public function seetickets(){
+        return view('screens.user-turns');
+    }
+
     public function createTurn(Request $request)
     {
 //        dd($request->all());
