@@ -12,6 +12,7 @@ Route::get('/', function () {
 //user routes
 
 Route::get('/screen', [UserController::class, 'index']);
+Route::get('/seetickets', [UserController::class, 'seetickets'])->middleware('auth');
 
 
 Route::middleware([

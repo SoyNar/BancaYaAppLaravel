@@ -9,4 +9,8 @@ class UserController extends Controller
     public function index(){
         return view('screens.user-screen');
     }
+
+    public function seetickets(){
+        return view('screens.user-turns');
+    }
 }
