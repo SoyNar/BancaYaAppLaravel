@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Turn extends Model
 {
+
+    protected $table = 'turn';
     protected $fillable = [
 
         'ticket',
+        'category',
         'date_attention',
         'client_id',
         'advisor_id'
