@@ -2,10 +2,7 @@
 
 @section('title', 'Generar turno')
 
-
-    <!-- Contenido específico de la página -->
     <div class="bg-white rounded-lg shadow p-6">
-        <!-- Más contenido aquí -->
         @section('subtitle', 'Genera tu turno')
     </div>
     @section('content')
@@ -19,6 +16,15 @@
                 </ul>
             </div>
         @endif
+        @if (session('error'))
+            <x-alert type="danger" :message="session('error')" />
+        @endif
+
+        <!-- Mostrar mensajes de éxito -->
+        @if (session('success'))
+            <x-alert type="success" :message="session('success')" />
+        @endif
+
 
 
         <form action="{{route('createTurn')}}" method="POST">
@@ -29,7 +35,6 @@
                     <!-- Input de identificación -->
                     <input
                         type="text"
-
                         name="document"
                         value="{{old('document')}}"
                         placeholder="Número de identificación"

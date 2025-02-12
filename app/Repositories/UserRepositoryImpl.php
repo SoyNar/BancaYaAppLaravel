@@ -84,7 +84,6 @@ class UserRepositoryImpl implements UserRepository
     public function createTurn(array $data): Turn
     {
 
-//dd($data);
 
       $ticket = $this->generateTicket($data['category']);
 
@@ -97,7 +96,7 @@ try {
         'status' => 'PENDING',
     ]);
 } catch (\Exception $e) {
-    dd($e->getMessage()); // Muestra el error
+    dd($e->getMessage());
 }
         return $turn;
     }
