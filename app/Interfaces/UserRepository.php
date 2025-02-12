@@ -48,5 +48,5 @@ interface UserRepository
      */
     public function delete(int $id): bool;
 
-    public function createTurn(string $document,string $category) : Turn;
+    public function createTurn(array $data) : Turn;
 }

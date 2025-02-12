@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\CheckCategoryPermission;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,6 +13,8 @@ Route::get('/', function () {
 //user routes
 
 Route::get('/screen', [UserController::class, 'index']);
+Route::post('/create-turn', [UserController::class, 'createTurn'])->name('createTurn')->middleware(CheckCategoryPermission::class);
+Route::get('/show-turn', [UserController::class, 'showTurn'])->name('showTurn');
 
 
 Route::middleware([

@@ -10,11 +10,10 @@
 <div class="min-h-screen flex flex-col">
     <!-- Header -->
     <header class="bg-[#1e3a8a] text-white shadow-lg">
-        <div class="container mx-auto px-4">
             <div class="h-16 flex items-center justify-center">
                 <h1 class="text-4xl font-bold">@yield('subtitle', 'subtitlepage')</h1>
             </div>
-        </div>
+
     </header>
 
     <!-- Contenido -->
