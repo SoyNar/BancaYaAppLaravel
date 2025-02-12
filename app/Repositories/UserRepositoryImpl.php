@@ -72,10 +72,17 @@ class UserRepositoryImpl implements UserRepository
         return $model->delete();
     }
 
-    public function createTurn(string $document): Turn
+    public function createTurn(string $document, string $category): Turn
     {
         // TODO: Implement createTurn() method.
-        $turn =  Turn::all();
+        
+        $turn =  Turn::create([
+            'ticket',
+            'date_attention',
+            'client_id',
+            'advisor_id'
+            ,'status' => 'pending'
+        ]);
         return $turn;
     }
 
