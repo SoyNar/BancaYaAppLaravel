@@ -121,7 +121,7 @@
                 // Si hay un código activo, mostramos el primero que encontramos
                 if (activeCode) {
                     console.log(`Primer código activo encontrado: ${activeCode.code}`);
-                    return;
+                    activeCode.value = false;
                 } else {
                     console.log("No hay códigos activos disponibles.");
                 }
@@ -130,6 +130,10 @@
             } else {
                 console.log(`Estado desconocido para el módulo: ${moduleName}`);
             }
+        });
+
+        codes.forEach(code => {
+            console.log(`Código: ${code.code}, Estado: ${code.value ? 'Activo' : 'Inactivo'}`);
         });
     </script>
 @endsection
