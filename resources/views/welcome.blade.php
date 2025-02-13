@@ -46,7 +46,7 @@
             <img
                 src="{{ asset('img/bancaya.png') }}"
                 alt="Descripción de la imagen"
-                class="max-w-md mx-auto rounded-lg shadow-lg"
+                class=" max-w-xl mx-auto rounded-lg scale-125 "
             >
         </div>
     </main>

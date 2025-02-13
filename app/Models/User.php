@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends Authenticatable
 {
@@ -19,6 +21,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +32,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'document'
     ];
 
     /**
@@ -63,5 +67,18 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+/**
+ * relation between turns and users
+*/
+    public function turnsClient()
+    {
+        return $this->hasMany(Turn::class, 'client_id');
+    }
+
+    public function turnsAdvisor()
+    {
+        return $this->hasMany(Turn::class, 'advisor_id');
     }
 }
