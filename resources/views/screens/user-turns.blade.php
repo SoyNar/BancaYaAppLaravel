@@ -8,11 +8,12 @@
     <div class="flex flex-col gap-4">
 
         <div class="flex gap-4">
-            <div class="w-1/2 bg-[#1e3a8a] text-white rounded-10xl p-4 rounded-[45px] flex gap-10 flex-col items-center justify-center">
+            <div
+                class="w-1/2 bg-[#1e3a8a] text-white rounded-10xl p-4 rounded-[45px] flex gap-10 flex-col items-center justify-center">
                 <h1 class="text-6xl font-bold font-mochiy-pop-one">Pide tu prestamo ya</h1>
                 <img src="{{ asset('img/loan-purple.png') }}" alt="Logo">
             </div>
-            
+
             <div class="w-1/2 bg-blue-300 p-4">
                 <table class="min-w-full bg-white border-5 border-black-300" style="text-align: center;">
                     <tr class="bg-gray-100">
@@ -78,4 +79,57 @@
             </div>
         </div>
     </div>
+    <script>
+        // Pasar el array PHP a JavaScript usando JSON
+        const codes = @json($codes);
+        const mods = @json($modules);
+
+        // Imprimir los códigos y su valor en la consola
+        codes.forEach(code => {
+            console.log(`Código: ${code.code}, Estado: ${code.value ? 'Activo' : 'Inactivo'}`);
+        });
+
+        mods.forEach(module => {
+            console.log(`Módulo: ${module[0]}, Estado: ${module[1]}`);
+        });
+
+        mods.forEach(module => {
+            const moduleName = module[0];
+            const moduleStatus = module[1];
+
+            // Condicional encadenada para verificar el estado del módulo
+            if (moduleStatus === "Disponible") {
+                console.log(`${moduleName} está Disponible.`);
+                // Filtrar los códigos activos que empiecen con "Q"
+                let activeCode = codes.find(code => code.code.startsWith('Q') && code.value === true);
+
+                // Si no hay códigos con "Q", buscar en los que empiezan con "B"
+                if (!activeCode) {
+                    activeCode = codes.find(code => code.code.startsWith('B') && code.value === true);
+                }
+
+                // Si no hay códigos con "B", buscar en los que empiezan con "A"
+                if (!activeCode) {
+                    activeCode = codes.find(code => code.code.startsWith('A') && code.value === true);
+                }
+
+                // Si no hay códigos con "A", buscar en los que empiezan con "V"
+                if (!activeCode) {
+                    activeCode = codes.find(code => code.code.startsWith('V') && code.value === true);
+                }
+
+                // Si hay un código activo, mostramos el primero que encontramos
+                if (activeCode) {
+                    console.log(`Primer código activo encontrado: ${activeCode.code}`);
+                    return;
+                } else {
+                    console.log("No hay códigos activos disponibles.");
+                }
+            } else if (moduleStatus === "No Disponible") {
+                console.log(`${moduleName} no está Disponible.`);
+            } else {
+                console.log(`Estado desconocido para el módulo: ${moduleName}`);
+            }
+        });
+    </script>
 @endsection
