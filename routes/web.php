@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 //user routes
 
-Route::get('/screen', [UserController::class, 'index']);
+Route::get('/screen', [UserController::class, 'index'])->name('screen');
 Route::post('/create-turn', [UserController::class, 'createTurn'])->name('createTurn')->middleware(CheckCategoryPermission::class);
 Route::get('/show-turn', [UserController::class, 'showTurn'])->name('showTurn');
 Route::get('/seetickets', [UserController::class, 'seetickets'])->middleware('auth');
@@ -22,7 +22,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/screen', function () {
+        return view('user-screen');
+    })->name('screen');
 });

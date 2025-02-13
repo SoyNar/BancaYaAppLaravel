@@ -1,14 +1,14 @@
 @extends('layouts.screen-layout')
 
 @section('title', 'Confirmación de Turno')
-
+<div class="bg-white rounded-lg shadow p-6">
+    @section('subtitle', 'Confirmacion')
+</div>
 @section('content')
     <div class="min-h-screen flex items-center justify-center px-4">
         <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
             @if(session('success'))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6">
-                    {{ session('success') }}
-                </div>
+                <x-alert type="success" :message="session('success')" />
             @endif
 
             <div class="text-center">
@@ -24,8 +24,8 @@
                 <div class="space-y-4 mb-8">
 
                     <div>
-                        <h3 class="font-semibold text-gray-700">Fecha y hora</h3>
-                        <p class="text-gray-900">{{ session('turn.date_attention') }}</p>
+                        <h3 class="font-semibold text-gray-700">Espere su turno en la sala</h3>
+                       <h4 class="font-semibold text-gray-700" >Hora:</h4> <p class="text-gray-900">{{ session('turn.date_attention') }}</p>
                     </div>
                 </div>
 
