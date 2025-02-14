@@ -81,6 +81,7 @@ class UserRepositoryImpl implements UserRepository
  * y se crea un turno
  * un array con los datos solicitados
  * se tornar el turno del usuario
+ * se asgina el turno a un asesor si esta disponible
 */
     public function createTurn(array $data): Turn
     {
@@ -130,7 +131,13 @@ try {
 
         return $categoryLetter . $nextNumberFormatted;
     }
-
+/**
+ * metodo para asignar un turno a un asesor al presionar el boton de tomar un turno
+ *  el metodo verifica si el estado del turno es pendiente
+ * verifica si el estado del asesor es available
+ * cambia el estado a in_progress
+ * crea un evento para ser escuchado
+*/
 
     private function assignTurnToAdvisor(Turn $turn, User $advisor)
     {

@@ -14,7 +14,9 @@ class ClientSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {  $client = User::firstOrCreate(
+    {
+
+        $client = User::firstOrCreate(
         ['email' => 'Omara@example.com'],
         [
             'name' => 'client',
