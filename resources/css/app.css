@@ -5,3 +5,11 @@
 [x-cloak] {
     display: none;
 }
+
+@layer utilities {
+    .stroke-effect {
+      -webkit-text-stroke: 2px white;  
+      text-stroke: 2px white;          
+      color: transparent;             
+    }
+  }

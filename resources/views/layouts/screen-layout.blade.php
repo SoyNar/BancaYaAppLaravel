@@ -16,8 +16,13 @@
             <div class="container mx-auto px-4">
                 <div class="h-48 flex items-center justify-center">
                     <div class="flex items-end space-x-4">
-                        <h1 class="text-8xl font-bold font-mochiy-pop-one">@yield('subtitle', 'subtitlepage')</h1>
-                        @if(Request::is('seetickets'))
+                        @if(!Request::is('advisorsview'))
+                            <h1 class="text-8xl font-bold font-mochiy-pop-one">@yield('subtitle', 'subtitlepage')</h1>
+                        @elseif((Request::is('advisorsview')))
+                            <h1 class="text-8xl font-bold font-mochiy-pop-one stroke-effect">
+                                @yield('subtitle', 'subtitlepage')</h1>
+                        @endif
+                        @if(Request::is('seetickets')|| Request::is('advisorsview'))
                             <img src="{{ asset('img/cards.png') }}" alt="tarjetas de credito"
                                 class="w-18 h-10 object-cover">
                         @endif
@@ -27,9 +32,15 @@
         </header>
 
         <!-- Contenido -->
+         @if(!Request::is('advisorsview'))
         <main class="flex-1 p-8">
             @yield('content')
         </main>
+        @elseif(Request::is('advisorsview'))
+        <main class="flex-1 p-8 bg-[#1e3a8a]">
+            @yield('content')
+        </main>
+        @endif
     </div>
 
     @stack('scripts')
