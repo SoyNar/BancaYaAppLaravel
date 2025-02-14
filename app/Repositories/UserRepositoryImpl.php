@@ -7,6 +7,7 @@ use App\Models\Turn;
 use App\Models\User;
 use App\Interfaces\UserRepository;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 class UserRepositoryImpl implements UserRepository
 {
@@ -95,6 +96,16 @@ try {
         'category' => $data['category'],
         'status' => 'PENDING',
     ]);
+
+    $availableAdvisor = User::where('role', 'advisor')
+        ->where('advisor_status', 'AVAILABLE')
+        ->first();
+
+    if ($availableAdvisor) {
+        $this->assignTurnToAdvisor($turn, $availableAdvisor);
+    }
+
+
 } catch (\Exception $e) {
     dd($e->getMessage());
 }
@@ -118,6 +129,39 @@ try {
         $categoryLetter = CategoryEnum::tryFrom($category)?->value;
 
         return $categoryLetter . $nextNumberFormatted;
+    }
+
+
+    private function assignTurnToAdvisor(Turn $turn, User $advisor)
+    {
+        DB::beginTransaction();
+        try {
+            if ($turn->status !== 'PENDING') {
+                throw new \Exception('Turn is not in PENDING status');
+            }
+
+            if ($advisor->status !== 'AVAILABLE') {
+                throw new \Exception('Advisor is not available');
+            }
+
+            $turn->update([
+                'advisor_id' => $advisor->id,
+                'status' => 'IN_PROGRESS',
+                'date_attention' => now()
+            ]);
+
+            $advisor->update(['status' => 'BUSY']);
+
+
+            $this->webSocketHandler->broadcastTurnUpdate();
+
+
+            return true;
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw new \Exception('Error assigning turn: ' . $e->getMessage());
+        }
     }
 
 }
