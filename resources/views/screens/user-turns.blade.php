@@ -8,10 +8,29 @@
     <div class="flex flex-col gap-4">
 
         <div class="flex gap-4">
-            <div
-                class="w-1/2 bg-[#1e3a8a] text-white rounded-10xl p-4 rounded-[45px] flex gap-10 flex-col items-center justify-center">
-                <h1 class="text-6xl font-bold font-mochiy-pop-one">Pide tu prestamo ya</h1>
-                <img src="{{ asset('img/loan-purple.png') }}" alt="Logo">
+            <div class="w-1/2 swiper progress-slide-carousel swiper-container">
+                <div class="swiper-wrapper">
+                    <div
+                        class="w-[45vw] bg-[#1e3a8a] text-white rounded-10xl p-4 rounded-[45px] flex gap-10 flex-col items-center justify-center swiper-slide">
+                        <h1 class="text-6xl font-bold font-mochiy-pop-one">Pide tu prestamo ya</h1>
+                        <img src="{{ asset('img/loan-purple.png') }}" alt="Logo">
+                    </div>
+                    <div
+                        class="w-[45vw] bg-[#1e3a8a] text-white rounded-10xl p-4 rounded-[45px] flex gap-10 flex-col items-center justify-center swiper-slide">
+                        <h1 class="text-6xl font-bold font-mochiy-pop-one">Saca credito para tu casa</h1>
+                        <img src="{{ asset('img/credit-image.png') }}" alt="Logo">
+                    </div>
+                    <div
+                        class="w-[45vw] bg-[#1e3a8a] text-white rounded-10xl p-4 rounded-[45px] flex gap-10 flex-col items-center justify-center swiper-slide">
+                        <h1 class="text-6xl font-bold font-mochiy-pop-one">Paga y has transferencias por la App</h1>
+                        <img src="{{ asset('img/app-image.png') }}" alt="Logo">
+                    </div>
+                    <div
+                        class="w-[45vw] bg-[#1e3a8a] text-white rounded-10xl p-4 rounded-[45px] flex gap-10 flex-col items-center justify-center swiper-slide">
+                        <h1 class="text-6xl font-bold font-mochiy-pop-one">Miles de productos para nuestros clientes</h1>
+                        <img src="{{ asset('img/products-image.png') }}" alt="Logo">
+                    </div>
+                </div>
             </div>
 
             <div class="w-1/2 bg-blue-300 p-4">
@@ -79,6 +98,17 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".progress-slide-carousel", {
+            loop: true,
+            fraction: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        });
+    </script>
     <script>
         // Pasar el array PHP a JavaScript usando JSON
         const codes = @json($codes);
