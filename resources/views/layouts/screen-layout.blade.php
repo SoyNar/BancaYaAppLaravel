@@ -9,8 +9,8 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="min-h-screen bg-gray-100">
-    <div class="min-h-screen flex flex-col">
+<body class="bg-gray-100">
+    <div class="flex flex-col">
         <!-- Header -->
         <header class="bg-[#1e3a8a] text-white shadow-lg">
             <div class="container mx-auto px-4">
@@ -27,7 +27,7 @@
         </header>
 
         <!-- Contenido -->
-        <main class="flex-1 p-8">
+        <main class="flex-1 p-8 w-screen h-screen">
             @yield('content')
         </main>
     </div>
